@@ -1,0 +1,41 @@
+
+
+TOP := ..
+
+COMM_DIR := ..
+
+SRC_DIR := $(TOP)/source
+
+## Name and type of the target for this Makefile
+
+APP_TARGET := main
+
+## Define debugging symbols
+DEBUG = 0
+LINUX_COMPILER=_LINUX_# _EQUATOR_, _HHPPC_, _LINUX_ and so on
+PWLIB_SUPPORT = 0
+
+## Object files that compose the target(s)
+CPP_FILES = $(wildcard $(SRC_DIR)/*.cpp)
+
+OBJS := $(CPP_FILES:%.cpp=%)
+
+SOLIBS := ../../../10-Common/lib/release/linux/libintlc.so.5
+
+CFLAGS += -D_LINUX_
+CFLAGS += -D_LINUX_32_	
+	
+## Libraries to include in shared object file
+LIBS :=  osp rt
+
+## Add driver-specific include directory to the search path
+
+CFLAGS += -D_LINUX_
+
+INC_PATH += $(TOP)/include \
+
+LIB_PATH := $(TOP)/lib \
+
+INSTALL_APP_PATH = ./bin
+
+include ./common.mk
